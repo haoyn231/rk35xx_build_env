@@ -1,0 +1,34 @@
+services:
+  rk3576-android-builder:
+    build:
+      context: .
+      args:
+        USER_ID: ${HOST_UID:-1000}
+        GROUP_ID: ${HOST_GID:-1000}
+    image: rk3576-android14-build-env:local
+    container_name: rk3576-android14-build-env
+    hostname: rk3576-builder
+    init: true
+    stdin_open: true
+    tty: true
+    privileged: true
+    network_mode: host
+    working_dir: /workspace
+    volumes:
+      - type: bind
+        source: ${SDK_PATH:?Set SDK_PATH to the absolute path of the Android 14 SDK}
+        target: /workspace
+        bind:
+          create_host_path: false
+      - rk3576-ccache:/home/builder/.ccache
+    environment:
+      CCACHE_DIR: /home/builder/.ccache
+      USE_CCACHE: "1"
+      BUILD_JOBS: ${BUILD_JOBS:-8}
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+
+volumes:
+  rk3576-ccache:
