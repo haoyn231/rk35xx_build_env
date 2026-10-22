@@ -6,9 +6,9 @@
 | 环境 | 配置文件 | 使用说明 |
 | --- | --- | --- |
 | 原有 RK35xx Linux SDK 环境 | `docker/docker-compose.yml` | 见下文快速开始 |
-| RK3576 Android 14 SDK 环境 | `docker/android14/compose.yaml` | [Android 14 编译指南](./docs/Android14.md) |
+| RK3576 Android 14 SDK 环境 | `docker/android14/compose.yaml` | [Android 14 Docker 使用说明](./docs/Android14.md) |
 
-Android 14 环境基于本地已完成 U-Boot、Linux 6.1、Android 系统及 `update.img` 构建的配置独立添加，包含 Python 2.7.18、32 位兼容库和 SDK JDK 路径配置。SDK 源码需自行准备；本仓库不包含 Android SDK 或编译固件。
+Android 14 环境包含 Python 2.7.18、Python 3、32 位兼容库和 ccache。SDK 源码需自行准备，通过 `SDK_PATH` 挂载。
 
 适用于原厂 SDK 或者各个开发板厂家二次开发的 SDK，目前测试可用的有：
 
